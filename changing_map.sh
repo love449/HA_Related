@@ -64,7 +64,7 @@ for searchingPath in "${searchingPaths[@]}"; do
 		for targetFile in "${ES5_TARGET_FILES[@]}"; do
 			echo -e "  patch file : $targetFile"
 			cp $targetFile ${targetFile}.backup
-		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
+		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/1728003511\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
 		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/astellite\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
 			gzip -f -k $targetFile
 		done
@@ -81,7 +81,7 @@ for searchingPath in "${searchingPaths[@]}"; do
 		for targetFile in "${LATEST_TARGET_FILES[@]}"; do
 			echo -e "  patch file : $targetFile"
 			cp $targetFile ${targetFile}.backup
-		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
+		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/1728003511\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
 		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/astellite\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
 			gzip -f -k $targetFile
 		done
