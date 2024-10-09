@@ -58,13 +58,13 @@ for searchingPath in "${searchingPaths[@]}"; do
 			error "작업 경로가 올바르지 않습니다. 'hass_frontend'!! ('$cur_dir')"
 		fi
 		
-		declare ES5_TARGET_FILES=($(grep -nrl 'basemaps.cartocdn.com' ./frontend_es5/*.js))
+		declare ES5_TARGET_FILES=($(grep -nrl 'maps.pstatic.net' ./frontend_es5/*.js))
 		
 		info "frontend_es5/ 디렉토리 패치중.."
 		for targetFile in "${ES5_TARGET_FILES[@]}"; do
 			echo -e "  patch file : $targetFile"
 			cp $targetFile ${targetFile}.backup
-		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/1728003511\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
+		        sed -i 's/\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/1728003511\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/1728003511\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
 		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/astellite\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
 			gzip -f -k $targetFile
 		done
@@ -75,13 +75,13 @@ for searchingPath in "${searchingPaths[@]}"; do
 		fi
 		
 		
-		declare LATEST_TARGET_FILES=($(grep -nrl 'basemaps.cartocdn.com' ./frontend_latest/*.js))
+		declare LATEST_TARGET_FILES=($(grep -nrl 'maps.pstatic.net' ./frontend_latest/*.js))
 		
 		info "frontend_latest/ 디렉토리 패치중.."
 		for targetFile in "${LATEST_TARGET_FILES[@]}"; do
 			echo -e "  patch file : $targetFile"
 			cp $targetFile ${targetFile}.backup
-		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/1728003511\/{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
+   			sed -i 's/\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/1728003511\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko\"https:\/\/map.pstatic.net\/nrb\/styles\/basic\/1728003511\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
 		        sed -i 's/\"https:\/\/basemaps.cartocdn.com\/.*maxZoom:20/\"https:\/\/map.pstatic.net\/nrb\/styles\/astellite\/\{z\}\/\{x\}\/\{y\}\.png\?mt\=bg\.ol\.ts\.ar\.lko"\,\{minZoom:6,maxZoom:19,continuousWorld:\!0/g' $targetFile
 			gzip -f -k $targetFile
 		done
