@@ -94,6 +94,13 @@ for searchingPath in "${searchingPaths[@]}"; do
 done
 
 info "작업 완료!! hass_frontend"
+declare fePath
+declare -a searchingPaths=(
+	"/usr/local/lib/"
+	"$PWD"
+)
+
+checkRequirement "wget"
 
 for searchingPath in "${searchingPaths[@]}"; do
 	if [ -n "$fePath" ]; then
