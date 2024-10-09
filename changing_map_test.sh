@@ -54,10 +54,6 @@ for searchingPath in "${searchingPaths[@]}"; do
 		cur_dir=${PWD##*/}
 
 
-		if [ $cur_dir != 'knx_frontend' ]; then
-			error "작업 경로가 올바르지 않습니다. '*_frontend'!! ('$cur_dir')"
-		fi
-
 		declare ES5_TARGET_FILES=($(grep -nrl 'basemaps.cartocdn.com' ./frontend_es5/*.js))
 
 		info "frontend_es5/ 디렉토리 패치중.."
