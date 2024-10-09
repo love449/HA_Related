@@ -1,11 +1,38 @@
+#!/bin/bash
+
+set -e
+
+RED_COLOR='\033[0;31m'
+GREEN_COLOR='\033[0;32m'
+GREEN_YELLOW='\033[1;33m'
+NO_COLOR='\033[0m'
+
+declare fePath
+declare -a searchingPaths=(
+	"/usr/local/lib/"
+	"$PWD"
+)
+
+function info () { echo -e "${GREEN_COLOR}INFO: $1${NO_COLOR}";}
+function warn () { echo -e "${GREEN_YELLOW}WARN: $1${NO_COLOR}";}
+function error () { echo -e "${RED_COLOR}ERROR: $1${NO_COLOR}"; if [ "$2" != "false" ]; then exit 1;fi; }
+
+function checkRequirement () {
+	if [ -z "$(command -v "$1")" ]; then
+		error "'$1' 가 설치되어 있지 않습니다."
+	fi
+}
+
+checkRequirement "wget"
+
 for searchingPath in "${searchingPaths[@]}"; do
 	if [ -n "$fePath" ]; then
 		break
 	fi
 
-	info "'$searchingPath' 에서 hass_frontend 디렉토리 찾는중..."
+	info "'$searchingPath' 에서 knx_frontend 디렉토리 찾는중..."
 
-	findPaths=($(find $searchingPath -name hass_frontend -type d))
+	findPaths=($(find $searchingPath -name knx_frontend -type d))
 	findCnt=${#findPaths[@]}
 
 	if [ $findCnt -gt 0 ]; then
@@ -19,7 +46,7 @@ for searchingPath in "${searchingPaths[@]}"; do
 		if [ -n "$fePath" ]; then
 			info "'$fePath 에서 패치 진행..."
 		else
-			error "패치를 수행할 hass_frontend 경로를 찾지 못하였습니다."
+			error "패치를 수행할 knx_frontend 경로를 찾지 못하였습니다."
 		fi
 
 		cd $fePath
@@ -27,8 +54,8 @@ for searchingPath in "${searchingPaths[@]}"; do
 		cur_dir=${PWD##*/}
 
 
-		if [ $cur_dir != 'hass_frontend' ]; then
-			error "작업 경로가 올바르지 않습니다. 'hass_frontend'!! ('$cur_dir')"
+		if [ $cur_dir != 'knx_frontend' ]; then
+			error "작업 경로가 올바르지 않습니다. 'knx_frontend'!! ('$cur_dir')"
 		fi
 
 		declare ES5_TARGET_FILES=($(grep -nrl 'basemaps.cartocdn.com' ./frontend_es5/*.js))
@@ -65,3 +92,6 @@ for searchingPath in "${searchingPaths[@]}"; do
 		fi
 	fi
 done
+
+
+info "작업 완료!!"
