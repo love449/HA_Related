@@ -92,4 +92,8 @@ for targetFile in "${LATEST_TARGET_FILES[@]}"; do
 	gzip -f -k $targetFile
 done
 
+if [ ${#ES5_TARGET_FILES[@]} -eq 0 ]; then
+	warn "frontend_latest/ 디렉토리에 패치할 파일이 없습니다."
+fi
+
 info "작업 완료!!"
