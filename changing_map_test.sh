@@ -32,7 +32,7 @@ for searchingPath in "${searchingPaths[@]}"; do
 
 	info "'$searchingPath' 에서 hass_frontend 디렉토리 찾는중..."
 
-	findPaths=($(find $searchingPath -name hass_frontend -type d))
+	findPaths=($(find $searchingPath -name *_frontend -type d))
 	findCnt=${#findPaths[@]}
 
 	if [ $findCnt -gt 0 ]; then
